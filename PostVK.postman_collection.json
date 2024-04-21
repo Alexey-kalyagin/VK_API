@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "23886417-63ae-454d-9adf-8c1b809d73cc",
+		"name": "PostVK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27627102",
+		"_collection_link": "https://bold-shuttle-657240.postman.co/workspace/vk.com~2b994dd6-03c4-4b30-b071-140092888e7c/collection/27627102-23886417-63ae-454d-9adf-8c1b809d73cc?action=share&source=collection_link&creator=27627102"
+	},
+	"item": [
+		{
+			"name": "CreatePost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"post_id\", jsonData.response.post_id);// создаем переменную в окружении\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/wall.post?message={{test_API}}&owner_id={{owner_id}}&v=5.199",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"wall.post"
+					],
+					"query": [
+						{
+							"key": "message",
+							"value": "{{test_API}}"
+						},
+						{
+							"key": "owner_id",
+							"value": "{{owner_id}}"
+						},
+						{
+							"key": "v",
+							"value": "5.199"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddLike",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/likes.add?owner_id={{owner_id}}&v={{ver}}&item_id={{post_id}}&type=post",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"likes.add"
+					],
+					"query": [
+						{
+							"key": "owner_id",
+							"value": "{{owner_id}}"
+						},
+						{
+							"key": "v",
+							"value": "{{ver}}"
+						},
+						{
+							"key": "item_id",
+							"value": "{{post_id}}"
+						},
+						{
+							"key": "type",
+							"value": "post"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/wall.delete?owner_id={{owner_id}}&post_id={{post_id}}&v={{ver}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"wall.delete"
+					],
+					"query": [
+						{
+							"key": "owner_id",
+							"value": "{{owner_id}}"
+						},
+						{
+							"key": "post_id",
+							"value": "{{post_id}}"
+						},
+						{
+							"key": "v",
+							"value": "{{ver}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://api.vk.com/method",
+			"type": "string"
+		},
+		{
+			"key": "owner_id",
+			"value": "13266448",
+			"type": "string"
+		},
+		{
+			"key": "test_API",
+			"value": "test_API",
+			"type": "string"
+		},
+		{
+			"key": "ver",
+			"value": "5.119",
+			"type": "string"
+		},
+		{
+			"key": "post_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
